@@ -22,6 +22,14 @@
 
     <?php } else {
         ?>
+        <?php if (!empty($_SESSION['user']['isParent'])) { ?>
+            <a href="index.php?action=getRegisterChild&target=child">Въведи дете</a>
+            <a href="index.php?action=getBabysitterListPage&target=babysitter">Свържи се с детегледачка</a>
+            <a href="index.php?action=getBabysitterActivityList&target=babysitter">Активности на детегледачката</a>
+
+        <?php } else { ?>
+            <a href="index.php?action=getContactedParentsPage&target=child">Свързани родители с мен</a>
+        <?php } ?>
         <a href="index.php?action=getEditProfile&target=user">Edit Profile</a>
         <a href="index.php?action=doLogout&target=user">Logout</a>
     <?php } ?>

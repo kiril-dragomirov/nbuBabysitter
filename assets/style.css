@@ -47,3 +47,15 @@ footer {
     text-align: center;
     border: 3px solid green;
 }
+
+#child-reg {
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgba(136, 255, 251, 0.77);
+    padding: 10px;
+    text-align: center;
+}
+
+#child-reg td{
+    border: 1px solid black;
+}
