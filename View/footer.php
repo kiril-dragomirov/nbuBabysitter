@@ -7,6 +7,7 @@
  */
 ?>
 </body>
+<div style="padding: 3rem"></div>
 <footer>
 <h3>Footer</h3>
 </footer>

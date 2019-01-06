@@ -28,7 +28,7 @@
             <a href="index.php?action=getBabysitterActivityList&target=babysitter">Активности на детегледачката</a>
 
         <?php } else { ?>
-            <a href="index.php?action=getContactedParentsPage&target=child">Свързани родители с мен</a>
+            <a href="index.php?action=getContactedParentsPage&target=parent">Свързани родители с мен</a>
         <?php } ?>
         <a href="index.php?action=getEditProfile&target=user">Edit Profile</a>
         <a href="index.php?action=doLogout&target=user">Logout</a>

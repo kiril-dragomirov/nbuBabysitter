@@ -37,12 +37,12 @@ class BabysitterService
 
         if (!empty($checkIfExists['count'])) {
             $checkIfParentHaveHiredBabysitters = $babysitterRepository->checkIfParentHaveHiredBabysitters($params);
-                if (empty($checkIfParentHaveHiredBabysitters['count'])) {
-                    $result['success'] = $babysitterRepository->hireBabysitter($params);
-                } else {
-                    $result['success'] = false;
-                    $result['message'] = 'Вече имате наета детегледачка за деня.';
-                }
+            if (empty($checkIfParentHaveHiredBabysitters['count'])) {
+                $result['success'] = $babysitterRepository->hireBabysitter($params);
+            } else {
+                $result['success'] = false;
+                $result['message'] = 'Вече имате наета детегледачка за деня.';
+            }
         } else {
             $result['success'] = false;
             $result['message'] = 'Такава детегледачка не съществува.';
@@ -51,4 +51,28 @@ class BabysitterService
         return $result;
     }
 
+    public function getChildrenForParent($params)
+    {
+        $childList = RepositoryFactory::create('Babysitter')->getChildrenForParent($params);
+
+        if (empty($childList)) {
+            $result['success'] = false;
+            $result['message'] = 'Няма активни деца.';
+        } else {
+            $result['childList'] = $childList;
+        }
+
+        return $result;
+    }
+
+    public function getChildrenForParentActivity($params)
+    {
+        $activityForChildList = RepositoryFactory::create('Babysitter')->getChildrenForParentActivity($params);
+        return $activityForChildList;
+    }
+
+    public function insertActivity($params)
+    {
+        return RepositoryFactory::create('Babysitter')->insertActivity($params);
+    }
 }

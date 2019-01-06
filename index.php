@@ -6,7 +6,6 @@ spl_autoload_register(function ($class) {
 });
 
 session_start();
-require_once 'View/header.php';
 
 \Repository\DAO\DAO::getInstance();
 $fileNotFound = false;
@@ -66,4 +65,3 @@ if ($fileNotFound) {
     echo 'target or action invalid: target = ' . $controllerName . ' and action = ' . $methodName;
     header("location:./View/404.html");
 }
-require_once 'View/footer.php';

@@ -46,13 +46,13 @@ class BabysitterRepository
                 is_parent = :isParent
         ';
 
-        $getUserCount = $pdo->prepare($sql);
+        $getBabysitters = $pdo->prepare($sql);
 
-        $getUserCount->execute([
+        $getBabysitters->execute([
             'isParent' => BabysitterRepository::iS_NOT_PARENT
         ]);
 
-        return $getUserCount->fetchAll($pdo::FETCH_ASSOC);
+        return $getBabysitters->fetchAll($pdo::FETCH_ASSOC);
     }
 
     public function checkIfBabysitterExists($params)
@@ -128,5 +128,105 @@ class BabysitterRepository
             'parentId' => $_SESSION['user']['id'],
             'babysitterId' => $params['babysitterId']
         ]);
+    }
+
+    public function getChildrenForParent($params)
+    {
+        /* @var $pdo \PDO */
+        $pdo = DAO::getInstance();
+
+        $sql = '
+            SELECT 
+                name,
+                age,
+                c.id_child AS childId,
+                hb.parent_id AS parentId
+            FROM
+                children AS c
+            INNER JOIN
+                hired_babysitters AS hb
+                ON (c.parent_id = hb.parent_id)
+            INNER JOIN
+                users AS u
+                ON (u.id = hb.parent_id)
+            WHERE
+                u.id = :parentId
+                AND hb.date = CURDATE()
+        ';
+
+        $getBabysittersCount = $pdo->prepare($sql);
+
+        $getBabysittersCount->execute([
+            'parentId' => $params['parentId']
+        ]);
+
+        return $getBabysittersCount->fetchAll($pdo::FETCH_ASSOC);
+    }
+
+    public function getChildrenForParentActivity($params)
+    {
+        /* @var $pdo \PDO */
+        $pdo = DAO::getInstance();
+
+        $addition = '';
+        if ($_SESSION['user']['isParent']) {
+            $addition = 'INNER JOIN
+                hired_babysitters AS hb
+                ON (:userId = hb.parent_id)';
+        } else {
+            $addition = 'INNER JOIN
+                hired_babysitters AS hb
+                ON (:userId = hb.babysitter_id)';
+        }
+
+        $sql = "
+            SELECT 
+                at.activity,
+                at.date,
+                at.is_parent AS isParent
+            FROM
+                activity_table AS at
+            $addition
+            WHERE
+                at.child_id = :childId
+                AND at.day = CURDATE()
+                AND hb.date = CURDATE()
+        ";
+
+        $getBabysittersCount = $pdo->prepare($sql);
+
+        $getBabysittersCount->execute([
+            'childId' => $params['childId'],
+            'userId' => $_SESSION['user']['id']
+        ]);
+
+        return $getBabysittersCount->fetchAll($pdo::FETCH_ASSOC);
+    }
+
+    public function insertActivity($params)
+    {
+        /* @var $pdo \PDO */
+        $pdo = DAO::getInstance();
+
+        $sql = '
+        INSERT INTO activity_table 
+            (activity,is_parent,user_id,date,child_id,day) 
+        VALUES 
+            (:activity, :isParent, :userId, :date, :childId,CURDATE()) 
+            ON DUPLICATE KEY UPDATE activity = :activity
+        ';
+
+
+        $insertActivity = $pdo->prepare($sql);
+
+        $insertActivity->execute(
+            [
+                'activity' => $params['activity'],
+                'isParent' => $_SESSION['user']['isParent'],
+                'userId' => $_SESSION['user']['id'],
+                'date' => $params['date'],
+                'childId' => $params['childId']
+            ]
+        );
     }
 }

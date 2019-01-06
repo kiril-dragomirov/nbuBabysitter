@@ -9,7 +9,20 @@
 namespace Controller;
 
 
+use Helpers\ServiceFactory;
+use View\ViewMaker;
+
 class ParentController
 {
+    public function getContactedParentsPage()
+    {
+        $result = $this->getContactedParents();
 
+        return ViewMaker::view('contacted-parents', $result);
+    }
+
+    public function getContactedParents()
+    {
+        return ServiceFactory::create('Parent')->getContactedParents();
+    }
 }

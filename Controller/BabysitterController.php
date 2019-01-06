@@ -19,8 +19,8 @@ class BabysitterController
     {
         $result['babysitters'] = $this->getAllBabysitters();
 
-        if (! empty($params)) {
-            $result = array_merge($result,$params);
+        if (!empty($params)) {
+            $result = array_merge($result, $params);
         }
 
         return ViewMaker::view('babysitter-list', $result);
@@ -42,4 +42,29 @@ class BabysitterController
         return $this->getBabysitterListPage($result);
     }
 
+    public function getChildrenForParent()
+    {
+        $params = Input::inputAllGet();
+        $result = ServiceFactory::create('Babysitter')->getChildrenForParent($params);
+
+        return ViewMaker::view('select-children', $result);
+    }
+
+    public function getChildrenForParentActivity()
+    {
+        $params = Input::inputAllGet();
+        $result['activity'] = ServiceFactory::create('Babysitter')->getChildrenForParentActivity($params);
+        $result = array_merge($result, ['childId'=> $params['childId']]);
+        return ViewMaker::view('activity-list', $result);
+    }
+
+    public function insertActivity()
+    {
+        $params = Input::inputAllPost();
+
+        ServiceFactory::create('Babysitter')->insertActivity($params);
+
+        echo json_encode($params);
+        return true;
+    }
 }
