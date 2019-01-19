@@ -18,7 +18,7 @@
         <table id="child-reg">
             <tr>
                 <th>Три имена</th>
-                <th>Телефон за връзка</th>
+                <th>Години</th>
                 <th>Действие</th>
             </tr>
             <?php

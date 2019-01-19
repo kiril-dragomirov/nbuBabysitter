@@ -53,7 +53,7 @@ class BabysitterController
     public function getChildrenForParentActivity()
     {
         $params = Input::inputAllGet();
-        $result['activity'] = ServiceFactory::create('Babysitter')->getChildrenForParentActivity($params);
+        $result = ServiceFactory::create('Babysitter')->getChildrenForParentActivity($params);
         $result = array_merge($result, ['childId' => $params['childId']]);
         return ViewMaker::view('activity-list', $result);
     }

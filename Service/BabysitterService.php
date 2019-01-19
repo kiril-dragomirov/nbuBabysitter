@@ -67,12 +67,32 @@ class BabysitterService
 
     public function getChildrenForParentActivity($params)
     {
-        $activityForChildList = RepositoryFactory::create('Babysitter')->getChildrenForParentActivity($params);
-        return $activityForChildList;
+        $isHired['count'] = true;
+        if (!empty($_SESSION['user']['is_parent'])) {
+            $isHired = $this->checkIfBabysitterIsHired($params);
+        }
+        if (!empty($isHired['count'])) {
+            $activityForChildList = RepositoryFactory::create('Babysitter')->getChildrenForParentActivity($params);
+            $result['activity'] = $activityForChildList;
+        } else {
+            $result['success'] = false;
+            $result['message'] = 'Няма наета детегледачка';
+        }
+
+        return $result;
     }
 
     public function insertActivity($params)
     {
         return RepositoryFactory::create('Babysitter')->insertActivity($params);
+    }
+
+    public function checkIfBabysitterIsHired($params)
+    {
+        $babysitterRepository = RepositoryFactory::create('Babysitter');
+
+        $checkIfExists = $babysitterRepository->checkIfParentHaveHiredBabysitters($params);
+
+        return $checkIfExists;
     }
 }
