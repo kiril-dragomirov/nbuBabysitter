@@ -95,7 +95,9 @@ class BabysitterRepository
                 AND date = CURDATE()
         ';
 
-        $getBabysittersCount = $pdo->prepare($sql);
+        $getBabysittersCount = $pdo->prepare($sql,[
+            'parentId' => $_SESSION['user']['id']
+        ]);
 
         $getBabysittersCount->execute([
             'parentId' => $_SESSION['user']['id']
@@ -168,17 +170,6 @@ class BabysitterRepository
         /* @var $pdo \PDO */
         $pdo = DAO::getInstance();
 
-        $addition = '';
-        if ($_SESSION['user']['isParent']) {
-            $addition = 'INNER JOIN
-                hired_babysitters AS hb
-                ON (:userId = hb.parent_id)';
-        } else {
-            $addition = 'INNER JOIN
-                hired_babysitters AS hb
-                ON (:userId = hb.babysitter_id)';
-        }
-
         $sql = "
             SELECT 
                 at.activity,
@@ -186,18 +177,15 @@ class BabysitterRepository
                 at.is_parent AS isParent
             FROM
                 activity_table AS at
-            $addition
             WHERE
                 at.child_id = :childId
                 AND at.day = CURDATE()
-                AND hb.date = CURDATE()
         ";
 
         $getBabysittersCount = $pdo->prepare($sql);
 
         $getBabysittersCount->execute([
             'childId' => $params['childId'],
-            'userId' => $_SESSION['user']['id']
         ]);
 
         return $getBabysittersCount->fetchAll($pdo::FETCH_ASSOC);

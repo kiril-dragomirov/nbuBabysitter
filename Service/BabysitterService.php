@@ -68,7 +68,8 @@ class BabysitterService
     public function getChildrenForParentActivity($params)
     {
         $isHired['count'] = true;
-        if (!empty($_SESSION['user']['is_parent'])) {
+
+        if (! empty($_SESSION['user']['isParent'])) {
             $isHired = $this->checkIfBabysitterIsHired($params);
         }
         if (!empty($isHired['count'])) {
