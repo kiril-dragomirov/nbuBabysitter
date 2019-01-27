@@ -1,26 +1,28 @@
 header {
-    background-color: khaki;
+    background-color: #98fb98;
     height: 7rem;
 }
 
 #site-title {
-    font-size: xx-large;
+    font-size: 5rem;
+	display:inline;
     text-align: center;
     color: dodgerblue;
 }
 
 nav {
     overflow: hidden;
-    background-color: rgba(226, 228, 79, 0.64);
+    background-color: #b5fcb5 ;
 }
 
 nav a {
     float: left;
-    color: #262626;
+    color: dodgerblue;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
+	font-style:bold;
 }
 
 nav a:hover {
@@ -34,9 +36,10 @@ footer {
     bottom: 0;
     left: 0;
     padding: 1rem;
-    background-color: khaki;
+    background-color: #98fb98;
     text-align: center;
     color: dodgerblue;
+	font-size: xx large;
 }
 
 #register-form {
@@ -45,7 +48,7 @@ footer {
     border: 3px solid rgba(0, 128, 0, 0.38);
     padding: 10px;
     text-align: center;
-    border: 3px solid green;
+    border: 2px #1E90FF;
 }
 
 #child-reg {

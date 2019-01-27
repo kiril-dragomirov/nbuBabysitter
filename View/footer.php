@@ -7,7 +7,7 @@
  */
 ?>
 </body>
-<div style="padding: 3rem"></div>
+<div style="padding: 3rem;"></div>
 <footer>
-<h3>Footer</h3>
+<h3>Babysitter &reg;</h3>
 </footer>

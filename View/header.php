@@ -9,16 +9,16 @@
 <link href="assets/style.css" type="text/css" rel="stylesheet">
 
 <header>
-    <h3 id="site-title">Babysitter</h3>
-    <?php if (!empty($_SESSION['user'])) { ?>
-        <p>Добре дошли, <?= $_SESSION['user']['firstName'] . ' ' . $_SESSION['user']['lastName'] ?></p>
-    <?php } ?>
+<span><img src="/assets/pictures/biberon-logo.png" style="width:6rem;display:inline-block"></span>
+  <span><h3 id="site-title">Babysitter</h3></span>
+  
+    
 </header>
 <nav>
     <?php if (empty($_SESSION['user'])) { ?>
 
-        <a href="index.php?action=getLoginPage&target=user">Login</a>
-        <a href="index.php?action=getRegisterPage&target=user">Register</a>
+        <a href="index.php?action=getLoginPage&target=user">Вход</a>
+        <a href="index.php?action=getRegisterPage&target=user">Регистрация</a>
 
     <?php } else {
         ?>
@@ -30,10 +30,13 @@
         <?php } else { ?>
             <a href="index.php?action=getContactedParentsPage&target=parent">Свързани родители с мен</a>
         <?php } ?>
-        <a href="index.php?action=getEditProfile&target=user">Edit Profile</a>
-        <a href="index.php?action=doLogout&target=user">Logout</a>
+        <a href="index.php?action=getEditProfile&target=user">Редактиране на профил</a>
+        <a href="index.php?action=doLogout&target=user">Изход</a>
     <?php } ?>
 
 </nav>
 
 <body>
+<?php if (!empty($_SESSION['user'])) { ?>
+        <p style="margin-left:1rem;color:dodgerblue;font-size:1rem;font-style:normal; font-size: 20px;">Добре дошли, <?= $_SESSION['user']['firstName'] . ' ' . $_SESSION['user']['lastName'] ?></p>
+    <?php } ?>

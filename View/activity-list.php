@@ -28,7 +28,6 @@
     }
 </script>
 <?php if (empty($params['message'])) { ?>
-    <?php var_dump($params); ?>
     <table>
 
         <?php
@@ -81,14 +80,14 @@
                     Активност
                 </button>
                 </td><?php
-                if ($i == 23) {
-                    break;
-                }
+
 
             } ?>
             </tr>
             <?php
-
+            if ($i == 23) {
+                break;
+            }
 
 
             if ($j == 60) {

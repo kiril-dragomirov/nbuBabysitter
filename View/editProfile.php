@@ -8,26 +8,26 @@
 ?>
 
 <div id='register-form'>
-    <h2> Edit Profile </h2>
+    <h2> Редактиране на профил </h2>
     <form method="post" action="index.php?action=doEditProfile&target=user">
-        Username:<br>
+        Потребителско име:<br>
         <input type="text" name="username" value = <?= $_SESSION['user']['username'] ?>> <br>
-        Password<br>
+        Нова парола<br>
         <input type="password" name="password" > <br>
-        First Name<br>
+        Първо име<br>
         <input type="text" name="firstName" value = <?= $_SESSION['user']['firstName'] ?>> <br>
-        Second Name<br>
+        Бащино име<br>
         <input type="text" name="secondName" value = <?= $_SESSION['user']['secondName'] ?>> <br>
-        Last Name<br>
+        Фамилно име<br>
         <input type="text" name="lastName" value = <?= $_SESSION['user']['lastName'] ?>> <br>
-        Email<br>
+        Имейл адрес<br>
         <input type="email" name="email" value = <?= $_SESSION['user']['email'] ?>> <br>
-        Address<br>
+        Адрес<br>
         <input type="text" name="address" value = <?= $_SESSION['user']['address'] ?>> <br>
-        Number<br>
+        Телефон<br>
         <input type="number" name="number" value = <?= $_SESSION['user']['tel'] ?>> <br>
 
-        <input type="submit">
+        <input type="submit" value="Запази">
     </form>
     <?php if (!empty($params['message'])) { ?>
         <p style="background-color: red"><?= $params['message']; ?> </p>

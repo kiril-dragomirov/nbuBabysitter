@@ -7,34 +7,34 @@
  */
 ?>
 <div id='register-form'>
-    <h2> Register </h2>
+    <h2> Регистрация </h2>
     <form method="post" action="index.php?action=doRegister&target=user">
-        Username:<br>
+        Потребителско име:<br>
         <input type="text" name="username"> <br>
-        Password<br>
+        Парола<br>
         <input type="password" name="password"> <br>
-        Repeat Password<br>
+        Повторете парола<br>
         <input type="password" name="repPassword"> <br>
-        First Name<br>
+        Първо име<br>
         <input type="text" name="firstName"> <br>
-        Second Name<br>
+        Бащино име<br>
         <input type="text" name="secondName"> <br>
-        Last Name<br>
+        Фамилно име<br>
         <input type="text" name="lastName"> <br>
-        Email<br>
+        Имейл адрес<br>
         <input type="email" name="email"> <br>
-        Address<br>
+        Адрес<br>
         <input type="text" name="address"> <br>
-        Number<br>
+        Телефон<br>
         <input type="number" name="number"> <br>
-        Parent Or Babysitter:<br>
+         Родител или детегледачка:<br>
         <select name="isParent">
-            <option>Choose</option>
-            <option value="0">Babysitter</option>
-            <option value="1">Parent</option>
+            <option>Изберете</option>
+            <option value="0">Детегледачка</option>
+            <option value="1">Родиел</option>
         </select> <br>
 
-        <input type="submit">
+        <input type="submit" value="Регистрация">
     </form>
     <?php if (!empty($params['message'])) { ?>
     <p style="background-color: red"><?= $params['message']; ?> </p>
