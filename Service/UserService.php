@@ -76,7 +76,6 @@ class UserService
                 return $result;
             }
         }
-
         $params['password'] = password_hash($params['password'], PASSWORD_DEFAULT);
 
         $updatedUser = RepositoryFactory::create('User')->doEditProfile($params);

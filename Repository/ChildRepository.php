@@ -66,4 +66,26 @@ class ChildRepository
         $getChild = $pdo->prepare($sql);
         return $getChild->execute($params);
     }
+
+    public function getChildName($params)
+    {
+        /* @var $pdo \PDO */
+        $pdo = DAO::getInstance();
+
+        $sql = '
+            SELECT
+                name,
+                age
+            FROM
+                children
+            WHERE
+                id_child = :childId
+        ';
+
+        $getChildInfo = $pdo->prepare($sql);
+        $getChildInfo->execute(['childId' => $params['childId']]);
+
+        return $getChildInfo->fetchAll($pdo::FETCH_ASSOC);
+
+    }
 }

@@ -16,14 +16,17 @@ $controllerClassName = '\\Controller\\' . $controllerName . 'Controller';
 if (class_exists($controllerClassName)) {
     $contoller = new $controllerClassName();
     if (method_exists($contoller, $methodName)) {
-//                    if request is not for login or register, check for login
+//if request is not for login or register, check for login
         if (!(
-            $controllerName == "User" &&
+        ($controllerName == "User"
+            || $controllerName == 'Base')
+            &&
             (
                 $methodName == "doLogin"
                 || $methodName == "doRegister"
                 || $methodName == "getLoginPage"
                 || $methodName == "getRegisterPage"
+                || $methodName == 'getMainPage'
             )
         )
         ) {

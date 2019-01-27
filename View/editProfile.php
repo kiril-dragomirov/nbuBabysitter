@@ -6,7 +6,6 @@
  * Time: 3:20
  */
 ?>
-
 <div id='register-form'>
     <h2> Редактиране на профил </h2>
     <form method="post" action="index.php?action=doEditProfile&target=user">

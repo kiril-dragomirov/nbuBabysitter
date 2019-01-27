@@ -59,21 +59,37 @@ class BabysitterService
             $result['success'] = false;
             $result['message'] = 'Няма активни деца.';
         } else {
-            $result['childList'] = $childList;
+            $info = [];
+            if ($_SESSION['user']['isParent']) {
+                $info = RepositoryFactory::create('Babysitter')->getCurrentBabysitterForParent($params);
+            } else {
+                $info = RepositoryFactory::create('Babysitter')->getCurrentParentForBabysitter($params);
+            }
+            $result = [
+                'childList' => $childList,
+                'info' => $info
+            ];
         }
 
         return $result;
     }
 
+    public function getCurrentBabysitterForParent($params)
+    {
+        return RepositoryFactory::create('Babysitter')->getCurrentBabysitterForParent($params);
+    }
+
     public function getChildrenForParentActivity($params)
     {
         $isHired['count'] = true;
-        if (!empty($_SESSION['user']['is_parent'])) {
+        if (!empty($_SESSION['user']['isParent'])) {
             $isHired = $this->checkIfBabysitterIsHired($params);
         }
         if (!empty($isHired['count'])) {
             $activityForChildList = RepositoryFactory::create('Babysitter')->getChildrenForParentActivity($params);
             $result['activity'] = $activityForChildList;
+            $childRepository = RepositoryFactory::create('Child');
+            $result['childInfo'] = $childRepository->getChildName($params);
         } else {
             $result['success'] = false;
             $result['message'] = 'Няма наета детегледачка';

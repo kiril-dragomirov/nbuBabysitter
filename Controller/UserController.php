@@ -95,9 +95,27 @@ class UserController
             $params[$key] = htmlentities($index);
         }
 
-        $result = ServiceFactory::create('user')->doEditProfile($params);
+        if (
+            !empty($params['email'])
+            && !empty($params['password'])
+            && !empty($params['username'])
+            && !empty($params['firstName'])
+            && !empty($params['secondName'])
+            && !empty($params['lastName'])
+            && !empty($params['number'])
+            && !empty($params['address'])
+        ) {
+            $result = ServiceFactory::create('user')->doEditProfile($params);
+        } else {
+            $result['success'] = false;
+            $result['message'] = 'Всички полета са задължителни!';
+        }
 
-        return ViewMaker::view('editProfile', $result, ['target' => 'user', 'action' => 'getEditProfile']);
+        if ($result['success']) {
+            return ViewMaker::view('editProfile', $result, ['target' => 'user', 'action' => 'getEditProfile']);
+        } else {
+            return ViewMaker::view('editProfile', $result);
+        }
     }
 
     public function doLogout()

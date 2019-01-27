@@ -27,6 +27,7 @@
         }
     }
 </script>
+<p><?= 'Име: '. $params['childInfo'][0]['name'] . ', Възраст: ' .  $params['childInfo'][0]['age']?></p>
 <?php if (empty($params['message'])) { ?>
     <table>
 
@@ -40,7 +41,7 @@
             for ($j = 0;
                  $j <= 45;
                  $j += 15) {
-                $curTime = $i + $j;
+                $curTime = $i . $j;
 
                 ?>
                 <tr>
@@ -81,18 +82,18 @@
                 </button>
                 </td><?php
 
+                if ($i == 23) {
+                    break;
+                }
 
+
+                if ($j == 60) {
+                    continue;
+                }
             } ?>
             </tr>
             <?php
-            if ($i == 23) {
-                break;
-            }
 
-
-            if ($j == 60) {
-                continue;
-            }
 
 
             //inside the outer loop

@@ -70,6 +70,8 @@ class BabysitterController
 
     public function getBabysitterActivityList()
     {
+        $params['parentId'] = $_SESSION['user']['id'];
+        $result['info'] = ServiceFactory::create('Babysitter')->getCurrentBabysitterForParent($params);
         $result['children'] = ServiceFactory::create('Child')->getRegisteredChildren();
 
         return ViewMaker::view('choose-child-and-proceed', $result);

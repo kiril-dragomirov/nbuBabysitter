@@ -6,7 +6,9 @@
  * Time: 14:54
  */
 ?>
-
+<div id = register-form style="background-color: papayawhip">
+    <p>Име на родител: <?= $params['info'][0]['name']; ?></p>
+</div>
 <div id='register-form'>
     <h2>Деца за гледане</h2>
     <?php if (!empty($params['message'])) { ?>
