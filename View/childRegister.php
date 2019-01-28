@@ -25,7 +25,13 @@
 <?php
 if (!empty($params['children'])) {
     ?>
-    <table id="child-reg"> <?php
+    <table id="child-reg">
+        <tr>
+            <th>Име</th>
+            <th>Години</th>
+            <th>Действие</th>
+        </tr>
+        <?php
         foreach ($params['children'] as $index => $child) { ?>
             <tr>
                 <td><?= $child['name']; ?></td>

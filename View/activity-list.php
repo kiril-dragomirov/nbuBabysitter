@@ -27,8 +27,9 @@
         }
     }
 </script>
-<p><?= 'Име: '. $params['childInfo'][0]['name'] . ', Възраст: ' .  $params['childInfo'][0]['age']?></p>
 <?php if (empty($params['message'])) { ?>
+    <p><?= 'Име: '. $params['childInfo'][0]['name'] . ', Възраст: ' .  $params['childInfo'][0]['age']?></p>
+
     <table>
 
         <?php
