@@ -46,7 +46,7 @@
 
                 ?>
                 <tr>
-                <th><?= $i . ' : ' . $j; ?></th>
+                <th>Час: <?= $i . ' : ' . $j; ?></th>
                 <?php if (!empty($params['activity'])) {
                     ?>
                     <?php foreach ($params['activity'] as $key => $activity) {
@@ -65,13 +65,18 @@
                                 } ?>
                                 <td><?= empty($babysitter) ? '' : $babysitter . '- Коментар детегедач.' ?></td>
                                 <td><?= empty($parent) ? '' : $parent . '- Коментар родител.' ?></td>
-                            <?php } ?>
+                            <?php } else {
+                                ?>
+                                <td>няма коментар за <?= $i . ' : ' . $j; ?></td>
+                                <?php
+
+                            } ?>
                         <tr>
                         <?php
                     }
                 } else { ?>
-                    <td>няма</td>
-                    <td>няма</td>
+                    <td>няма коментар</td>
+                    <td>няма коментар</td>
 
                     <?php
 

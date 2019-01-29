@@ -11,7 +11,7 @@
     <header>
         <span><img src="assets/pictures/biberon-logo.png" style="width:6rem;display:inline-block"></span>
         <span><a href="index.php?target=base&action=getMainPage" style="text-decoration: none"><h3 id="site-title">Babysitter</h3></a> </span>
-
+        <title>Babysitter</title>
 
     </header>
     <nav>
